@@ -1,36 +1,41 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import products from "../data/products";
+import { getProduct } from "../services/productService";
 
 function ProductDetails() {
   const { id } = useParams();
+  const [product, setProduct] = useState(null);
 
-  const product = products.find(
-    (item) => item.id === Number(id)
-  );
+  useEffect(() => {
+    loadProduct();
+  }, []);
+
+  const loadProduct = async () => {
+    try {
+      const data = await getProduct(id);
+      setProduct(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   if (!product) {
-    return <h1>Product Not Found</h1>;
+    return <h2>Loading...</h2>;
   }
 
   return (
-    <div className="details-page">
+    <div className="product-details">
       <img
         src={product.image}
         alt={product.name}
+        width="300"
       />
 
-      <div>
-        <h1>{product.name}</h1>
+      <h1>{product.name}</h1>
 
-        <h2>₹{product.price}</h2>
+      <h2>₹{product.price}</h2>
 
-        <p>
-          Premium quality product designed
-          for everyday use.
-        </p>
-
-        <button>Add To Cart</button>
-      </div>
+      <p>{product.description}</p>
     </div>
   );
 }

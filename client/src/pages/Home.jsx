@@ -1,36 +1,64 @@
-import Navbar from "../components/Navbar";
-import ProductCard from "../components/ProductCard";
-import products from "../data/products";
+import { useEffect, useState } from "react";
+import ProductCard from "../components/ProductCard/ProductCard";
+import { getProducts } from "../services/productService";
+import Hero from "../components/Hero/Hero";
+import "../styles/Home.css";
 
 function Home() {
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+
+    loadProducts();
+
+  }, []);
+
+  const loadProducts = async () => {
+
+    try {
+
+      const data = await getProducts();
+
+      setProducts(data);
+
+    } catch (err) {
+
+      console.log(err);
+
+    }
+
+  };
+
   return (
-    <>
-      <Navbar />
+    <div className="home">
 
-      <section className="hero">
-        <h1>Discover Premium Products</h1>
+      <Hero />
 
-        <p>
-          Electronics, Fashion, Gaming and More
-        </p>
+      <section className="featured-section">
 
-        <button>Shop Now</button>
-      </section>
+        <h2 className="section-title">
+          Featured Products
+        </h2>
 
-      <section className="products">
-        <h2>Trending Products</h2>
+        <div className="products-grid">
 
-        <div className="product-grid">
           {products.map((product) => (
+
             <ProductCard
               key={product.id}
               product={product}
             />
+
           ))}
+
         </div>
+
       </section>
-    </>
+
+    </div>
   );
+
 }
 
 export default Home;
