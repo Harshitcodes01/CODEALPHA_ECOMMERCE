@@ -26,6 +26,10 @@ function Navbar() {
         <Link to="/orders">
           Orders
         </Link>
+
+        <Link to="/admin">
+          Admin
+        </Link>
       </div>
     </nav>
   );

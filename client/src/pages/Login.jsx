@@ -1,30 +1,56 @@
-import { useState, useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { useState } from "react";
+import api from "../api/api";
 
 function Login() {
-  const [email, setEmail] =
-    useState("");
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
 
-  const { login } =
-    useContext(AuthContext);
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-  const handleSubmit = (e) => {
+  const login = async (e) => {
     e.preventDefault();
 
-    login(email);
+    try {
+      const res = await api.post(
+        "/auth/login",
+        form
+      );
+
+      localStorage.setItem(
+        "token",
+        res.data.token
+      );
+
+      alert("Login Successful");
+
+    } catch (err) {
+      alert(err.response?.data?.message || "Login failed");
+    }
   };
 
   return (
     <div className="auth-page">
       <h1>Login</h1>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={login}>
         <input
-          type="email"
+          name="email"
           placeholder="Email"
-          onChange={(e) =>
-            setEmail(e.target.value)
-          }
+          onChange={handleChange}
+        />
+
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          onChange={handleChange}
         />
 
         <button type="submit">

@@ -10,6 +10,8 @@ import ProductDetails from "./pages/ProductDetails";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Orders from "./pages/Orders";
+import Admin from "./pages/Admin";
+import AddProduct from "./pages/AddProduct";
 
 function App() {
   return (
@@ -41,9 +43,19 @@ function App() {
         />
 
         <Route
-                path="/orders"
-                element={<Orders />}
+          path="/orders"
+          element={<Orders />}
         />
+
+        <Route
+          path="/admin"
+          element={<Admin />}
+        />
+      
+      <Route
+        path="/admin/add-product"
+        element={<AddProduct />}
+      />
       </Routes>
     </BrowserRouter>
 

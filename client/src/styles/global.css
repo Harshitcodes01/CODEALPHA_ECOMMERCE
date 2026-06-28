@@ -215,3 +215,38 @@ p{
   border-radius:12px;
   box-shadow:0 2px 8px rgba(0,0,0,0.08);
 }
+
+.admin-page{
+  padding:40px;
+}
+
+.admin-stats{
+  display:flex;
+  gap:20px;
+  margin-top:30px;
+}
+
+.stat-card{
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  min-width:180px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.08);
+}
+.product-form{
+  display:flex;
+  flex-direction:column;
+  max-width:400px;
+  gap:15px;
+}
+
+.product-form input{
+  padding:12px;
+}
+
+.product-form button{
+  padding:12px;
+  background:#222;
+  color:white;
+  border:none;
+}

@@ -2,22 +2,21 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 
-const connectDB = require("./config/db");
-
 dotenv.config();
 
-// Connect to MongoDB
-connectDB();
-
 const app = express();
+const authRoutes =require("./routes/authRoutes");
+
+require("./config/database");
 
 app.use(cors());
 app.use(express.json());
+app.use("/api/auth", authRoutes);
 
 app.get("/", (req, res) => {
   res.json({
     success: true,
-    message: "NovaCart Backend Running 🚀",
+    message: "NovaCart API Running 🚀",
   });
 });
 
