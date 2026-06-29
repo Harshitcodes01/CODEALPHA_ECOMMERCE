@@ -80,3 +80,30 @@ font-size:20px;
 cursor:pointer;
 box-shadow:0 4px 12px rgba(0,0,0,.12);
 }
+
+.badge{
+position:absolute;
+left:20px;
+top:20px;
+background:#C89B3C;
+color:white;
+padding:6px 14px;
+border-radius:20px;
+font-size:12px;
+font-weight:600;
+}
+
+.rating{
+margin:15px 0;
+color:#F5B301;
+}
+
+.card-buttons{
+display:flex;
+gap:12px;
+margin-top:20px;
+}
+
+.card-buttons button{
+flex:1;
+}

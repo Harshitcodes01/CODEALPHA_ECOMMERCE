@@ -1,0 +1,63 @@
+.deals-banner{
+
+margin:80px auto;
+
+width:84%;
+
+padding:60px;
+
+border-radius:30px;
+
+background:linear-gradient(135deg,#111,#444);
+
+color:white;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+}
+
+.deals-banner span{
+
+color:#C89B3C;
+
+letter-spacing:2px;
+
+font-size:14px;
+
+}
+
+.deals-banner h2{
+
+font-size:48px;
+
+margin:20px 0;
+
+}
+
+.deals-banner p{
+
+color:#ddd;
+
+}
+
+.deals-banner button{
+
+padding:16px 38px;
+
+border:none;
+
+border-radius:40px;
+
+background:#C89B3C;
+
+color:white;
+
+font-size:17px;
+
+cursor:pointer;
+
+}

@@ -1,0 +1,39 @@
+.btn{
+padding:14px 32px;
+border:none;
+border-radius:50px;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+}
+
+.primary{
+background:var(--primary);
+color:white;
+}
+
+.primary:hover{
+background:var(--accent);
+}
+
+.secondary{
+background:white;
+border:1px solid var(--border);
+color:var(--primary);
+}
+
+.secondary:hover{
+background:var(--bg);
+}
+
+.outline{
+background:transparent;
+border:2px solid var(--primary);
+color:var(--primary);
+}
+
+.outline:hover{
+background:var(--primary);
+color:white;
+}

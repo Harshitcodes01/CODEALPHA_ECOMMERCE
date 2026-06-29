@@ -3,6 +3,10 @@ import ProductCard from "../components/ProductCard/ProductCard";
 import { getProducts } from "../services/productService";
 import Hero from "../components/Hero/Hero";
 import "../styles/Home.css";
+import CategorySection from "../components/CategorySection/CategorySection";
+import Benefits from "../components/Benefits/Benefits";
+import Testimonials from "../components/Testimonials/Testimonials";
+import Footer from "../components/Footer/Footer";
 
 function Home() {
 
@@ -35,6 +39,9 @@ function Home() {
 
       <Hero />
 
+      <CategorySection />
+
+
       <section className="featured-section">
 
         <h2 className="section-title">
@@ -55,6 +62,15 @@ function Home() {
         </div>
 
       </section>
+
+      <Benefits />
+
+      <Testimonials />
+
+      <Footer />
+
+  
+
 
     </div>
   );
