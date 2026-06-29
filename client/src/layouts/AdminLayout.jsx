@@ -1,17 +1,20 @@
+import { Outlet } from "react-router-dom";
+
 import Sidebar from "../components/Admin/Sidebar/Sidebar";
 
-function AdminLayout({ children }) {
+function AdminLayout() {
   return (
     <div style={{ display: "flex" }}>
       <Sidebar />
+
       <main
         style={{
           marginLeft: "260px",
-          padding: "30px",
           width: "100%",
+          padding: "30px",
         }}
       >
-        {children}
+        <Outlet />
       </main>
     </div>
   );

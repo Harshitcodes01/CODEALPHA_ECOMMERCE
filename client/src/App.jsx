@@ -14,84 +14,29 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Orders from "./pages/Orders";
 
-// Admin pages (we'll create them next)
 import Dashboard from "./pages/admin/Dashboard";
 
 function App() {
   return (
     <BrowserRouter>
-
       <Routes>
 
-        {/* Customer Layout */}
+        {/* Customer Routes */}
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Route>
 
-        <Route
-          path="/"
-          element={
-            <MainLayout>
-              <Home />
-            </MainLayout>
-          }
-        />
-
-        <Route
-          path="/product/:id"
-          element={
-            <MainLayout>
-              <ProductDetails />
-            </MainLayout>
-          }
-        />
-
-        <Route
-          path="/cart"
-          element={
-            <MainLayout>
-              <Cart />
-            </MainLayout>
-          }
-        />
-
-        <Route
-          path="/orders"
-          element={
-            <MainLayout>
-              <Orders />
-            </MainLayout>
-          }
-        />
-
-        <Route
-          path="/login"
-          element={
-            <MainLayout>
-              <Login />
-            </MainLayout>
-          }
-        />
-
-        <Route
-          path="/register"
-          element={
-            <MainLayout>
-              <Register />
-            </MainLayout>
-          }
-        />
-
-        {/* Admin Layout */}
-
-        <Route
-          path="/admin"
-          element={
-            <AdminLayout>
-              <Dashboard />
-            </AdminLayout>
-          }
-        />
+        {/* Admin Routes */}
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<Dashboard />} />
+        </Route>
 
       </Routes>
-
     </BrowserRouter>
   );
 }
