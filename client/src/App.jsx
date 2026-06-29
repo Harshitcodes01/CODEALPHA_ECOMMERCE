@@ -4,61 +4,95 @@ import {
   Route,
 } from "react-router-dom";
 
+import MainLayout from "./layouts/MainLayout";
+import AdminLayout from "./layouts/AdminLayout";
+
 import Home from "./pages/Home";
-import Cart from "./pages/Cart";
 import ProductDetails from "./pages/ProductDetails";
+import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Orders from "./pages/Orders";
-import Admin from "./pages/Admin";
-import AddProduct from "./pages/AddProduct";
+
+// Admin pages (we'll create them next)
+import Dashboard from "./pages/admin/Dashboard";
 
 function App() {
   return (
     <BrowserRouter>
+
       <Routes>
-        <Route
-          path="/"
-          element={<Home />}
-        />
+
+        {/* Customer Layout */}
 
         <Route
-          path="/cart"
-          element={<Cart />}
+          path="/"
+          element={
+            <MainLayout>
+              <Home />
+            </MainLayout>
+          }
         />
 
         <Route
           path="/product/:id"
-          element={<ProductDetails />}
+          element={
+            <MainLayout>
+              <ProductDetails />
+            </MainLayout>
+          }
         />
 
         <Route
-          path="/login"
-          element={<Login />}
-        />
-
-        <Route
-          path="/register"
-          element={<Register />}
+          path="/cart"
+          element={
+            <MainLayout>
+              <Cart />
+            </MainLayout>
+          }
         />
 
         <Route
           path="/orders"
-          element={<Orders />}
+          element={
+            <MainLayout>
+              <Orders />
+            </MainLayout>
+          }
         />
 
         <Route
-          path="/admin"
-          element={<Admin />}
+          path="/login"
+          element={
+            <MainLayout>
+              <Login />
+            </MainLayout>
+          }
         />
-      
-      <Route
-        path="/admin/add-product"
-        element={<AddProduct />}
-      />
-      </Routes>
-    </BrowserRouter>
 
+        <Route
+          path="/register"
+          element={
+            <MainLayout>
+              <Register />
+            </MainLayout>
+          }
+        />
+
+        {/* Admin Layout */}
+
+        <Route
+          path="/admin"
+          element={
+            <AdminLayout>
+              <Dashboard />
+            </AdminLayout>
+          }
+        />
+
+      </Routes>
+
+    </BrowserRouter>
   );
 }
 
