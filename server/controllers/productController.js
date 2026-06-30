@@ -44,15 +44,16 @@ const getProduct = (req, res) => {
 const addProduct = (req, res) => {
 
     const {
-
         name,
         description,
         category,
-        image,
         price,
         stock
-
     } = req.body;
+
+    const image = req.file
+        ? `/uploads/${req.file.filename}`
+        : "";
 
     db.run(
 
@@ -61,14 +62,12 @@ const addProduct = (req, res) => {
         VALUES(?,?,?,?,?,?)`,
 
         [
-
             name,
             description,
             category,
             image,
             price,
             stock
-
         ],
 
         function(err){
@@ -89,8 +88,7 @@ const addProduct = (req, res) => {
     );
 
 };
-
-const deleteProduct=(req,res)=>{
+function deleteProduct(req, res) {
 
     db.run(
 
@@ -98,15 +96,61 @@ const deleteProduct=(req,res)=>{
 
         [req.params.id],
 
+        function (err) {
+
+            if (err)
+                return res.status(500).json(err);
+
+            res.json({
+                message: "Deleted"
+            });
+
+        }
+
+    );
+
+}
+
+const updateProduct = (req, res) => {
+
+    const {
+        name,
+        description,
+        category,
+        image,
+        price,
+        stock
+    } = req.body;
+
+    db.run(
+
+        `UPDATE products
+         SET
+            name=?,
+            description=?,
+            category=?,
+            image=?,
+            price=?,
+            stock=?
+         WHERE id=?`,
+
+        [
+            name,
+            description,
+            category,
+            image,
+            price,
+            stock,
+            req.params.id
+        ],
+
         function(err){
 
             if(err)
                 return res.status(500).json(err);
 
             res.json({
-
-                message:"Deleted"
-
+                message:"Product Updated"
             });
 
         }
@@ -115,14 +159,12 @@ const deleteProduct=(req,res)=>{
 
 };
 
-module.exports={
+module.exports = {
 
     getProducts,
-
     getProduct,
-
     addProduct,
-
+    updateProduct,
     deleteProduct
 
 };

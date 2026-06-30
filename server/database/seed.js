@@ -69,3 +69,35 @@ db.get(
 
   }
 );
+
+db.run(`
+CREATE TABLE IF NOT EXISTS orders(
+
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+userId INTEGER,
+
+total REAL,
+
+status TEXT DEFAULT 'Pending',
+
+createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
+
+)
+`);
+
+db.run(`
+CREATE TABLE IF NOT EXISTS order_items(
+
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+orderId INTEGER,
+
+productId INTEGER,
+
+quantity INTEGER,
+
+price REAL
+
+)
+`);

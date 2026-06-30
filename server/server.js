@@ -7,15 +7,24 @@ dotenv.config();
 const app = express();
 const authRoutes =require("./routes/authRoutes");
 const productRoutes =require("./routes/productRoutes");
+const orderRoutes =
+require("./routes/orderRoutes");
 
 require("./config/database");
 require("./database/seed");
+const path = require("path");
 
 app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
-
+app.use("/api/orders", orderRoutes);
+app.use(
+    "/uploads",
+    express.static(
+        path.join(__dirname, "uploads")
+    )
+);
 app.get("/", (req, res) => {
   res.json({
     success: true,

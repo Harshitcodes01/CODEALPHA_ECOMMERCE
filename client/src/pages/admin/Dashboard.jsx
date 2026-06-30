@@ -1,8 +1,9 @@
 function Dashboard() {
   return (
-    <div>
-      <h1>Admin Dashboard</h1>
-    </div>
+    <>
+      <h1>Dashboard</h1>
+      <p>Welcome to NovaCart Admin Panel.</p>
+    </>
   );
 }
 
