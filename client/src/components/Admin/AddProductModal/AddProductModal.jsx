@@ -1,68 +1,111 @@
+import { useState } from "react";
+import "./AddProductModal.css";
+import { addProduct } from "../../../services/adminProductService";
+
 function AddProductModal({
-  open,
-  onClose,
+    open,
+    onClose,
 }) {
 
-  if (!open) return null;
+    if (!open) return null;
 
-  return (
+    const [form, setForm] = useState({
+        name: "",
+        description: "",
+        category: "",
+        price: "",
+        stock: "",
+    });
 
-    <div className="modal-overlay">
+    const [image, setImage] = useState(null);
 
-      <div className="modal">
+    const handleChange = (e) => {
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value,
+        });
+    };
 
-        <h2>Add Product</h2>
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-        <form>
+        const formData = new FormData();
 
-          <input
-            placeholder="Product Name"
-          />
+        formData.append("name", form.name);
+        formData.append("description", form.description);
+        formData.append("category", form.category);
+        formData.append("price", form.price);
+        formData.append("stock", form.stock);
 
-          <textarea
-            placeholder="Description"
-          />
+        if (image) {
+            formData.append("image", image);
+        }
 
-          <input
-            placeholder="Category"
-          />
+        await addProduct(formData);
 
-          <input
-            placeholder="Price"
-            type="number"
-          />
+        alert("Product Added Successfully!");
 
-          <input
-            placeholder="Stock"
-            type="number"
-          />
+        onClose();
+    };
 
-          <input
-            type="file"
-          />
+    return (
 
-          <div className="modal-buttons">
+        <div className="modal-overlay">
 
-            <button
-              type="button"
-              onClick={onClose}
-            >
-              Cancel
-            </button>
+            <div className="modal">
 
-            <button type="submit">
-              Save
-            </button>
+                <h2>Add Product</h2>
 
-          </div>
+                <form>
 
-        </form>
+                    <input
+                        placeholder="Product Name"
+                    />
 
-      </div>
+                    <textarea
+                        placeholder="Description"
+                    />
 
-    </div>
+                    <input
+                        placeholder="Category"
+                    />
 
-  );
+                    <input
+                        placeholder="Price"
+                        type="number"
+                    />
+
+                    <input
+                        placeholder="Stock"
+                        type="number"
+                    />
+
+                    <input
+                        type="file"
+                    />
+
+                    <div className="modal-buttons">
+
+                        <button
+                            type="button"
+                            onClick={onClose}
+                        >
+                            Cancel
+                        </button>
+
+                        <button type="submit">
+                            Save
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    );
 
 }
 
