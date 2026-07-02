@@ -15,6 +15,7 @@ import Register from "./pages/Register";
 import Orders from "./pages/Orders";
 
 import Dashboard from "./pages/admin/Dashboard";
+import Products from "./pages/admin/Products";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         {/* Admin Routes */}
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Dashboard />} />
+          <Route path="products" element={<Products />} />
         </Route>
 
       </Routes>

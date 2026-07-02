@@ -1,0 +1,33 @@
+.table-container {
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  overflow-x: auto;
+  box-shadow: 0 8px 25px rgba(0,0,0,.08);
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.product-table th,
+.product-table td {
+  padding: 16px;
+  text-align: left;
+}
+
+.product-table thead {
+  background: #f8f9fa;
+}
+
+.product-table tr {
+  border-bottom: 1px solid #eee;
+}
+
+.table-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  object-fit: cover;
+}
