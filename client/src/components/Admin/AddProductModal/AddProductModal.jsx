@@ -56,32 +56,49 @@ function AddProductModal({
 
                 <h2>Add Product</h2>
 
-                <form>
+                <form onSubmit={handleSubmit}>
 
                     <input
                         placeholder="Product Name"
+                        name="name"
+                        value={form.name}
+                        onChange={handleChange}
                     />
 
                     <textarea
+                        name="description"
                         placeholder="Description"
+                        value={form.description}
+                        onChange={handleChange}
                     />
 
                     <input
                         placeholder="Category"
+                        name="category"
+                        value={form.category}
+                        onChange={handleChange}
                     />
 
                     <input
                         placeholder="Price"
+                        name="price"
+                        value={form.price}
+                        onChange={handleChange}
                         type="number"
                     />
 
                     <input
-                        placeholder="Stock"
                         type="number"
+                        name="stock"
+                        placeholder="Stock"
+                        value={form.stock}
+                        onChange={handleChange}
                     />
 
                     <input
                         type="file"
+                        name="image"
+                        onChange={(e) => setImage(e.target.files[0])}
                     />
 
                     <div className="modal-buttons">

@@ -5,20 +5,21 @@ import {
 } from "../../services/adminProductService";
 
 import ProductTable from "../../components/Admin/ProductTable/ProductTable";
-import { useState } from "react";
+
 import AddProductModal from "../../components/Admin/AddProductModal/AddProductModal";
 
 function Products() {
     const [openModal, setOpenModal] = useState(false);
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
         loadProducts();
     }, []);
 
-    const loadProducts = async () => {
+    async function loadProducts() {
         const data = await getProducts();
         setProducts(data);
-    };
+    }
 
     const handleDelete = async (id) => {
         const confirmDelete = window.confirm(
