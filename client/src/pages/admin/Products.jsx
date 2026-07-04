@@ -11,6 +11,7 @@ import AddProductModal from "../../components/Admin/AddProductModal/AddProductMo
 function Products() {
     const [openModal, setOpenModal] = useState(false);
     const [products, setProducts] = useState([]);
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
         loadProducts();
@@ -41,13 +42,32 @@ function Products() {
                 + Add Product
             </button>
 
+            <input
+                type="text"
+                placeholder="Search products..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                style={{
+                    width: "320px",
+                    padding: "12px",
+                    margin: "20px 0",
+                    borderRadius: "8px",
+                }}
+            />
+
             <ProductTable
-                products={products}
+                products={products.filter((item) =>
+                    item.name.toLowerCase().includes(search.toLowerCase())
+                )}
                 onDelete={handleDelete}
             />
             <AddProductModal
                 open={openModal}
                 onClose={() => setOpenModal(false)}
+                onSuccess={() => {
+                    loadProducts();
+                    setOpenModal(false);
+                }}
             />
         </div>
     );

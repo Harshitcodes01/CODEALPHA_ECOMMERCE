@@ -1,10 +1,12 @@
 import { useState } from "react";
 import "./AddProductModal.css";
 import { addProduct } from "../../../services/adminProductService";
+import { toast } from "react-toastify";
 
 function AddProductModal({
     open,
     onClose,
+    onSuccess,
 }) {
 
     if (!open) return null;
@@ -42,15 +44,24 @@ function AddProductModal({
         }
 
         await addProduct(formData);
+        toast.success("Product Added Successfully!");
 
-        alert("Product Added Successfully!");
+        setForm({
+            name: "",
+            description: "",
+            category: "",
+            price: "",
+            stock: "",
+        });
 
-        onClose();
+        setImage(null);
+
+        onSuccess();
     };
 
     return (
 
-        <div className="modal-overlay">
+        <div classNamawaie="modal-overlay">
 
             <div className="modal">
 
@@ -97,9 +108,27 @@ function AddProductModal({
 
                     <input
                         type="file"
-                        name="image"
-                        onChange={(e) => setImage(e.target.files[0])}
+                        accept="image/*"
+                        onChange={(e) => {
+                            const file = e.target.files[0];
+                            setImage(file);
+                        }}
                     />
+
+                    {image && (
+                        <img
+                            src={URL.createObjectURL(image)}
+                            alt="Preview"
+                            style={{
+                                width: "120px",
+                                height: "120px",
+                                objectFit: "cover",
+                                borderRadius: "10px",
+                                marginTop: "10px",
+                                border: "1px solid #ddd",
+                            }}
+                        />
+                    )}
 
                     <div className="modal-buttons">
 

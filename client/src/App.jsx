@@ -3,6 +3,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 import MainLayout from "./layouts/MainLayout";
 import AdminLayout from "./layouts/AdminLayout";
@@ -39,6 +40,11 @@ function App() {
         </Route>
 
       </Routes>
+      <ToastContainer
+        position="top-right"
+        autoClose={2500}
+        theme="colored"
+      />
     </BrowserRouter>
   );
 }
