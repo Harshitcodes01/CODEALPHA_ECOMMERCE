@@ -7,6 +7,8 @@ import {
 import ProductTable from "../../components/Admin/ProductTable/ProductTable";
 
 import AddProductModal from "../../components/Admin/AddProductModal/AddProductModal";
+import PageHeader from "../../components/Admin/PageHeader/PageHeader";
+import SearchBar from "../../components/Admin/SearchBar/SearchBar";
 
 function Products() {
     const [openModal, setOpenModal] = useState(false);
@@ -36,12 +38,15 @@ function Products() {
 
     return (
         <div>
-            <h1>Product Management</h1>
-
-            <button onClick={() => setOpenModal(true)}>
-                + Add Product
-            </button>
-
+            <PageHeader
+                title="Products"
+                buttonText="+ Add Product"
+                onClick={() => setOpenModal(true)}
+            />
+            <SearchBar
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+            />
             <input
                 type="text"
                 placeholder="Search products..."
@@ -56,9 +61,17 @@ function Products() {
             />
 
             <ProductTable
-                products={products.filter((item) =>
-                    item.name.toLowerCase().includes(search.toLowerCase())
-                )}
+                products={
+                    products.filter(product =>
+
+                        product.name
+                            .toLowerCase()
+                            .includes(
+                                search.toLowerCase()
+                            )
+
+                    )
+                }
                 onDelete={handleDelete}
             />
             <AddProductModal
