@@ -14,6 +14,7 @@ function Products() {
     const [openModal, setOpenModal] = useState(false);
     const [products, setProducts] = useState([]);
     const [search, setSearch] = useState("");
+    const [editingProduct, setEditingProduct] = useState(null);
 
     useEffect(() => {
         loadProducts();
@@ -61,26 +62,25 @@ function Products() {
             />
 
             <ProductTable
-                products={
-                    products.filter(product =>
-
-                        product.name
-                            .toLowerCase()
-                            .includes(
-                                search.toLowerCase()
-                            )
-
-                    )
-                }
+                products={products}
                 onDelete={handleDelete}
+                onEdit={(product) => {
+                    setEditingProduct(product);
+                    setOpenModal(true);
+                }}
             />
             <AddProductModal
                 open={openModal}
-                onClose={() => setOpenModal(false)}
+                onClose={() => {
+                    setOpenModal(false);
+                    setEditingProduct(null);
+                }}
                 onSuccess={() => {
                     loadProducts();
                     setOpenModal(false);
+                    setEditingProduct(null);
                 }}
+                product={editingProduct}
             />
         </div>
     );
