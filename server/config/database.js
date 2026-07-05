@@ -52,6 +52,44 @@ const db = new sqlite3.Database(dbPath, (err) => {
         quantity INTEGER
       )
       `);
+      db.run(`
+CREATE TABLE IF NOT EXISTS orders(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    userId INTEGER,
+    customerName TEXT,
+    email TEXT,
+    phone TEXT,
+    address TEXT,
+    city TEXT,
+    state TEXT,
+    pincode TEXT,
+    paymentMethod TEXT,
+    total REAL,
+    status TEXT DEFAULT 'Pending',
+    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
+)
+`);
+
+      db.run(`
+CREATE TABLE IF NOT EXISTS order_items(
+
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+orderId INTEGER,
+
+productId INTEGER,
+
+productName TEXT,
+
+quantity INTEGER,
+
+price REAL,
+
+subtotal REAL
+
+)
+`);
+
 
       console.log("✅ Tables Ready");
 

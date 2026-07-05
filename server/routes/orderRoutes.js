@@ -4,10 +4,14 @@ const router = express.Router();
 
 const {
 
+    placeOrder,
+
     getOrders
 
-}=require("../controllers/orderController");
+} = require("../controllers/orderController");
 
-router.get("/",getOrders);
+router.get("/", getOrders);
 
-module.exports=router;
+router.post("/", placeOrder);
+
+module.exports = router;

@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./AddProductModal.css";
-import { addProduct } from "../../../services/adminProductService";
+import {
+    addProduct,
+    updateProduct,
+} from "../../../services/adminProductService";
 import { toast } from "react-toastify";
 
 function AddProductModal({
     open,
     onClose,
     onSuccess,
+    product,
 }) {
 
     if (!open) return null;
@@ -21,12 +25,38 @@ function AddProductModal({
 
     const [image, setImage] = useState(null);
 
-    const handleChange = (e) => {
+    useEffect(() => {
+
+        if (product) {
+
+            setForm({
+                name: product.name,
+                description: product.description,
+                category: product.category,
+                price: product.price,
+                stock: product.stock,
+            });
+
+        } else {
+
+            setForm({
+                name: "",
+                description: "",
+                category: "",
+                price: "",
+                stock: "",
+            });
+
+        }
+
+    }, [product]);
+
+    function handleChange(e) {
         setForm({
             ...form,
             [e.target.name]: e.target.value,
         });
-    };
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -43,7 +73,18 @@ function AddProductModal({
             formData.append("image", image);
         }
 
-        await addProduct(formData);
+        if (product) {
+
+            await updateProduct(
+                product.id,
+                formData
+            );
+
+        } else {
+
+            await addProduct(formData);
+
+        }
         toast.success("Product Added Successfully!");
 
         setForm({
@@ -65,7 +106,9 @@ function AddProductModal({
 
             <div className="modal">
 
-                <h2>Add Product</h2>
+                <h2>
+                    {product ? "Edit Product" : "Add Product"}
+                </h2>
 
                 <form onSubmit={handleSubmit}>
 
@@ -140,7 +183,7 @@ function AddProductModal({
                         </button>
 
                         <button type="submit">
-                            Save
+                            {product ? "Update" : "Save"}
                         </button>
 
                     </div>
