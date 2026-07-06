@@ -14,10 +14,13 @@ import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Orders from "./pages/Orders";
+import AdminOrders from "./pages/admin/Orders";
+import Users from "./pages/admin/Users";
 
 import Dashboard from "./pages/admin/Dashboard";
 import Products from "./pages/admin/Products";
 import Checkout from "./pages/Checkout";
+// import AdminOrders from "./pages/admin/Orders";
 
 function App() {
   return (
@@ -33,12 +36,15 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/checkout" element={<Checkout />} />
+
         </Route>
 
         {/* Admin Routes */}
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="products" element={<Products />} />
+          <Route path="orders" element={<AdminOrders />} />
+          <Route path="users" element={<Users />} />
         </Route>
 
       </Routes>

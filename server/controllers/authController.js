@@ -115,7 +115,54 @@ const login = (req, res) => {
 
 };
 
+
+const getUsers = (req, res) => {
+
+  db.all(
+
+    "SELECT id, name, email, role FROM users",
+
+    [],
+
+    (err, rows) => {
+
+      if (err)
+        return res.status(500).json(err);
+
+      res.json(rows);
+
+    }
+
+  );
+
+};
+
+const deleteUser = (req, res) => {
+
+  db.run(
+
+    "DELETE FROM users WHERE id=?",
+
+    [req.params.id],
+
+    function (err) {
+
+      if (err)
+        return res.status(500).json(err);
+
+      res.json({
+        message: "User Deleted"
+      });
+
+    }
+
+  );
+
+};
+
 module.exports = {
   register,
   login,
+  getUsers,
+  deleteUser
 };

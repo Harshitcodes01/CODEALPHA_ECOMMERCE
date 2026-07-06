@@ -6,9 +6,9 @@ import "./Dashboard.css";
 function Dashboard() {
 
   const [stats, setStats] = useState({
-    products: 0,
-    users: 0,
-    orders: 0,
+    totalProducts: 0,
+    totalUsers: 0,
+    totalOrders: 0,
     revenue: 0,
   });
 
@@ -34,17 +34,17 @@ function Dashboard() {
 
         <StatsCard
           title="Products"
-          value={stats.products}
+          value={stats.totalProducts}
         />
 
         <StatsCard
           title="Orders"
-          value={stats.orders}
+          value={stats.totalOrders}
         />
 
         <StatsCard
           title="Users"
-          value={stats.users}
+          value={stats.totalUsers}
         />
 
         <StatsCard

@@ -2,30 +2,49 @@ const db = require("../config/database");
 
 const getDashboardStats = (req, res) => {
 
+    const stats = {};
+
     db.get(
-
-        `
-        SELECT
-            (SELECT COUNT(*) FROM products) AS products,
-            (SELECT COUNT(*) FROM users) AS users,
-            (SELECT COUNT(*) FROM orders) AS orders,
-            (
-                SELECT IFNULL(SUM(total),0)
-                FROM orders
-            ) AS revenue
-        `,
-
+        "SELECT COUNT(*) AS totalProducts FROM products",
         [],
+        (err, productRow) => {
 
-        (err, row) => {
+            stats.totalProducts = productRow.totalProducts;
 
-            if (err)
-                return res.status(500).json(err);
+            db.get(
+                "SELECT COUNT(*) AS totalOrders FROM orders",
+                [],
+                (err, orderRow) => {
 
-            res.json(row);
+                    stats.totalOrders = orderRow.totalOrders;
+
+                    db.get(
+                        "SELECT COUNT(*) AS totalUsers FROM users",
+                        [],
+                        (err, userRow) => {
+
+                            stats.totalUsers = userRow.totalUsers;
+
+                            db.get(
+                                "SELECT SUM(total) AS revenue FROM orders",
+                                [],
+                                (err, revenueRow) => {
+
+                                    stats.revenue =
+                                        revenueRow.revenue || 0;
+
+                                    res.json(stats);
+
+                                }
+                            );
+
+                        }
+                    );
+
+                }
+            );
 
         }
-
     );
 
 };

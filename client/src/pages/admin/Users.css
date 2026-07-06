@@ -1,0 +1,33 @@
+.users-page{
+max-width:1200px;
+margin:auto;
+padding:40px;
+}
+
+.users-page table{
+width:100%;
+border-collapse:collapse;
+background:#fff;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.users-page th,
+.users-page td{
+padding:15px;
+border-bottom:1px solid #eee;
+text-align:left;
+}
+
+.users-page th{
+background:#111827;
+color:#fff;
+}
+
+.users-page button{
+padding:8px 14px;
+background:#ef4444;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}

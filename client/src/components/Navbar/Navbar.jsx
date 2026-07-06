@@ -40,6 +40,10 @@ function Navbar() {
           <FiUser />
         </Link>
 
+        <Link to="/admin/orders">
+          Orders
+        </Link>
+
       </div>
 
     </nav>

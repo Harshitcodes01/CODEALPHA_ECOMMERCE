@@ -1,0 +1,31 @@
+.admin-orders{
+max-width:1200px;
+margin:auto;
+padding:40px;
+}
+
+.admin-orders table{
+width:100%;
+border-collapse:collapse;
+background:white;
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+border-radius:12px;
+overflow:hidden;
+}
+
+.admin-orders th,
+.admin-orders td{
+padding:16px;
+border-bottom:1px solid #eee;
+text-align:left;
+}
+
+.admin-orders th{
+background:#111827;
+color:white;
+}
+
+.admin-orders select{
+padding:8px;
+border-radius:6px;
+}

@@ -125,10 +125,63 @@ const getOrders = (req, res) => {
 
 };
 
+const getUserOrders = (req, res) => {
+
+    db.all(
+
+        "SELECT * FROM orders WHERE userId=? ORDER BY createdAt DESC",
+
+        [req.params.userId],
+
+        (err, rows) => {
+
+            if (err)
+                return res.status(500).json(err);
+
+            res.json(rows);
+
+        }
+
+    );
+
+};
+
+const updateOrderStatus = (req, res) => {
+
+    db.run(
+
+        "UPDATE orders SET status=? WHERE id=?",
+
+        [
+
+            req.body.status,
+
+            req.params.id
+
+        ],
+
+        function(err){
+
+            if(err)
+                return res.status(500).json(err);
+
+            res.json({
+
+                success:true,
+
+                message:"Status Updated"
+
+            });
+
+        }
+
+    );
+
+};
 module.exports = {
 
     placeOrder,
-
-    getOrders
-
+    getOrders,
+    getUserOrders,
+    updateOrderStatus
 };
