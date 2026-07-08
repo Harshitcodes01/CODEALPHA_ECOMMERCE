@@ -163,7 +163,8 @@ npm run dev
 ![Checkout](screenshots/checkout.png)
 
 ---
-
+## Admin Dashboard
+![Admin_Dashboard](screenshots/admin%20dashboard.png)
 
 # 🚀 Future Improvements
 
