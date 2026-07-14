@@ -6,7 +6,6 @@ import "../styles/Home.css";
 import CategorySection from "../components/CategorySection/CategorySection";
 import Benefits from "../components/Benefits/Benefits";
 import Testimonials from "../components/Testimonials/Testimonials";
-import Footer from "../components/Footer/Footer";
 
 function Home() {
 
@@ -66,11 +65,6 @@ function Home() {
       <Benefits />
 
       <Testimonials />
-
-      <Footer />
-
-  
-
 
     </div>
   );
