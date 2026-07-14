@@ -1,63 +1,88 @@
-.hero{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:80px 8%;
-background:#F8F6F2;
-min-height:80vh;
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  padding: 80px 8%;
+  background: var(--bg);
+  min-height: 80vh;
+  gap: 60px;
 }
 
-.hero-content{
-max-width:550px;
+@media (max-width: 991px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 60px 5%;
+    gap: 40px;
+    text-align: center;
+  }
 }
 
-.hero-tag{
-color:#C89B3C;
-font-weight:600;
-letter-spacing:2px;
-margin-bottom:15px;
+.hero-content {
+  max-width: 580px;
 }
 
-.hero h1{
-font-size:64px;
-line-height:1.1;
-color:#1A1A1A;
-margin-bottom:25px;
+.hero-tag {
+  display: inline-block;
+  margin-bottom: 20px;
 }
 
-.hero-desc{
-font-size:18px;
-color:#666;
-line-height:1.8;
-margin-bottom:35px;
+.hero h1 {
+  font-family: 'Marcellus', serif;
+  font-size: 56px;
+  line-height: 1.15;
+  color: var(--primary);
+  margin-bottom: 25px;
+  font-weight: 400;
+  text-transform: capitalize;
 }
 
-.shop-btn{
-background:#1A1A1A;
-color:white;
-padding:15px 40px;
-border:none;
-border-radius:40px;
-font-size:17px;
-cursor:pointer;
-transition:.3s;
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 42px;
+  }
 }
 
-.shop-btn:hover{
-background:#C89B3C;
+.hero-desc {
+  font-size: 16px;
+  color: var(--secondary);
+  line-height: 1.8;
+  margin-bottom: 40px;
+  font-weight: 300;
 }
 
-.hero-image{
-display:flex;
-justify-content:center;
-align-items:center;
-flex:1;
+.hero-image-container {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  transition: var(--transition);
 }
 
-.hero-circle{
-width:420px;
-height:420px;
-border-radius:50%;
-background:linear-gradient(135deg,#C89B3C,#F3E5AB);
-box-shadow:0 20px 40px rgba(0,0,0,.15);
+.hero-image-container:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.hero-luxury-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 6s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.hero-image-container:hover .hero-luxury-image {
+  transform: scale(1.08);
+}
+
+.hero-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(18, 18, 18, 0.05), transparent);
+  pointer-events: none;
 }
